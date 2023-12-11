@@ -1,15 +1,11 @@
 import React from 'react';
 
-function ProgressBar(props) {
+function ProgressBar({ pv, pvMax, barType }) {
   return (
-    <div className="progress md-progress">
-      <div className="progress-bar"
-        style={{ width: (props.pv * 100 / props.pvMax) + "%" }}
-        aria-valuenow={props.pv}
-        aria-valuemin="0"
-        aria-valuemax={props.pvMax}
-        role="progressbar">
-        <i className={` fas ${props.faType} ${props.bgType} icon-text`}> {props.pv} {props.barName} </i>
+    <div className={`progress-container ${barType}`}>
+      <span className="progress-label">{barType === 'health' ? 'Vie' : 'Mana'}: {pv} / {pvMax}</span>
+      <div className="progress-bar">
+        <div className="progress" style={{ width: `${(pv / pvMax) * 100}%` }}></div>
       </div>
     </div>
   );

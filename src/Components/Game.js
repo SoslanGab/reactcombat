@@ -3,18 +3,17 @@ import './Game.css';
 import Monster from './Monster';
 import PlayerList from './PlayerList';
 
-class App extends React.Component {
+class Game extends React.Component {
   render() {
     return (
-      <div className="App">
-        <Monster />
-        <br></br>
-        <section className="container-fluid">
+      <div className="game-container">
+        <div className="arena">
+          <Monster />
           <PlayerList />
-        </section >
+        </div>
       </div>
-    )
+    );
   }
 }
 
-export default App;
+export default Game;
