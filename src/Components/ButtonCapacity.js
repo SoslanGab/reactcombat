@@ -37,9 +37,11 @@ const ButtonCapacity = ({ player }) => {
       };
     };
     const handlequit = () => {
-      if (currentPlayer.quit){
+      if (currentPlayer.quit){   
+        dispatch(quit());
         return <div>{currentPlayer.name} est KO</div>;
       }
+   
     }
 
     if (currentPlayer.isKO) {
@@ -67,7 +69,7 @@ const ButtonCapacity = ({ player }) => {
           <i className="fas fa-magic"></i>
         </button>
 
-        <button 
+      <button 
         type="button" 
         onClick={handleSpecialHit} 
         className="btn btn-danger"

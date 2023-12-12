@@ -93,7 +93,7 @@ export const fightSlice = createSlice({
       const playerId = action.payload;
       const player = state.players.find(p => p.id === playerId);
         if (player.quit === false){
-          player.isKo = true;
+          player.isKO  = true;
         }
     },
   }
