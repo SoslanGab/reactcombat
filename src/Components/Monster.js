@@ -13,13 +13,11 @@ const Monster = () => {
             <div id="monsterCard">
               <div className="text-center">
                 <div className="row">
-                  <div className="col-sm-2 offset-sm-3">
+                  <div className="col-sm-12 offset-sm-3">
                     <span className="badge badge-danger ml-2 " id="degatSpanMonster"></span>
-                    <img className="img-fluid" src="images/imgmonster.png" alt='monster' />
+                    <img className="img-fluid" src="images/imgmonster.png" width="400" alt='monster' />
                   </div>
-
                   <div id="comboOnMonster" className="col-sm-6">
-
                   </div>
                 </div>
               </div>

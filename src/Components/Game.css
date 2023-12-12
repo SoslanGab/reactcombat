@@ -629,6 +629,16 @@ overflow: visible;
   padding: 20px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Ombre portée */
 }
+.player-card {
+  width: 300px; /* Augmentez la largeur selon vos besoins */
+  height: auto; /* Hauteur automatique pour s'adapter au contenu */
+  
+}
+
+.player-gif {
+  width: 100%; 
+  height: auto; 
+}
 
 .player-card, .monster-card {
   border: 2px solid #fff;
@@ -662,8 +672,8 @@ overflow: visible;
   transition: width 0.3s ease; /* Animation douce de la barre de progression */
 }
 
-.progress-bar.health .progress {
-  background-color: red; /* Couleur rouge pour la barre de vie */
+.progress-bar .progress {
+  background-color: red !important; /* Couleur rouge pour la barre de vie */
 }
 
 .progress-bar.mana .progress {
