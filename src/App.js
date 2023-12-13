@@ -3,7 +3,7 @@ import './App.css';
 import './gameStyles.css';
 import Monster from './Monster';
 import Player from './Player';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector  } from 'react-redux';
 import { endTurn } from './features/fight/fightSlice';
 import GameResult from './GameResult'; // Assurez-vous que le chemin est correct
 

@@ -84,6 +84,12 @@ export const fightSlice = createSlice({
       }
     },
     nextTurn: (state) => {
+      const alivePlayers = state.players.filter(p => p.isAlive);
+      if (alivePlayers.length === 1) {
+        state.gameOver = true;
+        state.winner = alivePlayers[0].name;
+      }
+
       do {
         state.currentTurn = (state.currentTurn % state.players.length) + 1;
       } while (state.players.find(p => p.id === state.currentTurn).pv <= 0);
@@ -92,9 +98,9 @@ export const fightSlice = createSlice({
     quit: (state, action) => {
       const playerId = action.payload;
       const player = state.players.find(p => p.id === playerId);
-        if (player.quit === false){
-          player.isKO  = true;
-        }
+      if (player) {
+        player.isKO = true;
+      }
     },
   }
 });

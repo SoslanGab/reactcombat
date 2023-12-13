@@ -37,12 +37,11 @@ const ButtonCapacity = ({ player }) => {
       };
     };
     const handlequit = () => {
-      if (currentPlayer.quit){   
-        dispatch(quit());
-        return <div>{currentPlayer.name} est KO</div>;
-      }
+      dispatch(quit(player.id));
+      dispatch(nextTurn()); // Ajout pour passer au tour suivant
+    };
    
-    }
+    
 
     if (currentPlayer.isKO) {
       return <div>{currentPlayer.name} est KO</div>;
