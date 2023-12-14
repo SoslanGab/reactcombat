@@ -2,10 +2,10 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   players: [
-    { id: 1, name: "khabib nurmagomedov", pv: 100, pvMax: 100, mana: 30, manaMax: 30, isKO: false, isAlive: true, turnsSinceManaDepleted: 0,  quit: false},
-    { id: 2, name: "islam makhachev", pv: 100, pvMax: 100, mana: 30, manaMax: 30, isKO: false, isAlive: true, turnsSinceManaDepleted: 0, quit: false},
-    { id: 3, name: "Jon jones", pv: 100, pvMax: 100, mana: 30, manaMax: 30, isKO: false, isAlive: true, turnsSinceManaDepleted: 0, quit: false},
-    { id: 4, name: "Khamzat chimaev", pv: 100, pvMax: 100, mana: 30, manaMax: 30, isKO: false, isAlive: true, turnsSinceManaDepleted: 0, quit: false }
+    { id: 1, name: "khabib nurmagomedov", pv: 100, pvMax: 100, mana: 30, manaMax: 30,healUses: 2, isKO: false, isAlive: true, turnsSinceManaDepleted: 0,  quit: false},
+    { id: 2, name: "islam makhachev", pv: 100, pvMax: 100, mana: 30, manaMax: 30,healUses: 2, isKO: false, isAlive: true, turnsSinceManaDepleted: 0, quit: false},
+    { id: 3, name: "Jon jones", pv: 100, pvMax: 100, mana: 30, manaMax: 30,healUses: 2, isKO: false, isAlive: true, turnsSinceManaDepleted: 0, quit: false},
+    { id: 4, name: "Khamzat chimaev", pv: 100, pvMax: 100, mana: 30, manaMax: 30,healUses: 2, isKO: false, isAlive: true, turnsSinceManaDepleted: 0, quit: false }
   ],
   monster: {
     name: "Monster 1",
@@ -25,10 +25,9 @@ export const fightSlice = createSlice({
       const { damage, playerId } = action.payload;
       const player = state.players.find(p => p.id === playerId);
       
-      if (player && player.mana > 0 && state.monster.pv > 0) {
-        const manaCost = Math.floor(Math.random() * (20 - 8 + 1)) + 8;
-        player.mana = Math.max(player.mana - manaCost, 0);
-        state.monster.pv = Math.max(state.monster.pv - damage, 0); 
+      if (player && !player.isKO && state.monster.pv > 0) {
+        const damage = 25; // Dégâts infligés au monstre
+        state.monster.pv = Math.max(state.monster.pv - damage, 0);
       }
       if (player.pv === 0) {
         player.isKO = true;
@@ -47,9 +46,9 @@ export const fightSlice = createSlice({
 
     specialAction: (state, action) => {
       const player = state.players.find(p => p.id === action.payload);
-      if (player) {
-        const healAmount = Math.floor(Math.random() * 10); // Ou tout autre logique pour la quantité de soin
-        player.pv = Math.min(player.pv + healAmount, player.pvMax); // Assurez-vous de ne pas dépasser les PV max
+      if (player && player.healUses > 0) {
+        player.pv = player.pvMax; // Restaure complètement les PV
+        player.healUses -= 1; // Décrémente le nombre d'utilisations
       }
       checkGameOver(state);
     },

@@ -615,7 +615,6 @@ overflow: visible;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  border-image: url('../../public/images/ring/ring-bas.png') 60;
 }
 
 .arena {
@@ -750,4 +749,72 @@ overflow: visible;
   color: black;
   text-decoration: none;
   cursor: pointer;
+}
+
+/* styles des buttons */
+.btn-custom {
+  padding: 10px 15px; /* Ajustez la taille du padding selon vos besoins */
+  border-radius: 5px; /* Bords arrondis */
+  color: white; /* Couleur du texte */
+  font-size: 1rem; /* Taille du texte */
+  text-transform: uppercase; /* Texte en majuscules */
+  letter-spacing: 1px; /* Espacement entre les lettres */
+  cursor: pointer; /* Curseur en forme de pointeur */
+  transition: all 0.3s ease; /* Transition douce pour les effets de survol */
+  border: none; /* Pas de bordure */
+}
+
+/* Bouton Hit */
+.btn-hit {
+  background-color: #e74c3c; /* Couleur rouge */
+}
+
+.btn-hit:hover {
+  background-color: #c0392b; /* Une nuance plus sombre pour l'effet de survol */
+}
+
+/* Bouton Heal */
+.btn-heal {
+  background-color: #2ecc71; /* Couleur verte */
+}
+
+.btn-heal:hover {
+  background-color: #27ae60; /* Une nuance plus sombre pour l'effet de survol */
+}
+
+/* Bouton Special Hit */
+.btn-special-hit {
+  background-color: #3498db; /* Couleur bleue */
+}
+
+.btn-special-hit:hover {
+  background-color: #2980b9; /* Une nuance plus sombre pour l'effet de survol */
+}
+
+/* Bouton Quit */
+.btn-quit {
+  background-color: #f39c12; /* Couleur orange */
+}
+
+.btn-quit:hover {
+  background-color: #d35400; /* Une nuance plus sombre pour l'effet de survol */
+}
+
+/* Désactivation des boutons */
+.btn-custom:disabled {
+  background-color: #7f8c8d; /* Couleur grisée */
+  cursor: not-allowed; /* Curseur indiquant l'action interdite */
+}
+.btn-custom{
+  margin-top: 10px;
+}
+
+.btn-custom.disabled {
+  background-color: #cccccc; /* Couleur grise */
+  color: #666666; /* Couleur de texte plus foncée */
+  cursor: not-allowed; /* Curseur indiquant que le bouton est inutilisable */
+}
+
+.btn-custom.disabled:hover {
+  background-color: #cccccc; /* Gardez la même couleur au survol */
 }
