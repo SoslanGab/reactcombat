@@ -712,3 +712,42 @@ overflow: visible;
   border: none;
   border-radius: 5px;
 }
+
+/* la modal */
+/* Style pour la pop-up */
+.modal {
+  display: block; /* Affiche la pop-up */
+  position: fixed; /* La pop-up reste fixe à l'écran */
+  z-index: 1; /* S'assure que la pop-up soit au-dessus des autres éléments */
+  left: 0;
+  top: 0;
+  width: 100%; /* Largeur complète */
+  height: 100%; /* Hauteur complète */
+  overflow: auto; /* Permet le défilement si le contenu est trop grand */
+  background-color: rgb(0,0,0); /* Couleur de fond */
+  background-color: rgba(0,0,0,0.4); /* Noir avec opacité */
+}
+
+/* Style pour le contenu de la pop-up */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% du haut et centré horizontalement */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Largeur du contenu */
+}
+
+/* Style pour le bouton de fermeture */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}

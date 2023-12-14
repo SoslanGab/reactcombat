@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { hitMonster, hitBack, specialAction, specialHit, nextTurn, quit } from '../features/fight/fightSlice';
 
 const ButtonCapacity = ({ player }) => {
+    const [showModal, setShowModal] = useState(false);
     const dispatch = useDispatch();
     const players = useSelector(state => state.fight.players);
     const currentPlayer = players.find(p => p.id === player.id);
@@ -89,7 +90,15 @@ const ButtonCapacity = ({ player }) => {
           disabled={currentPlayer.id !== currentTurn}>
           Quit
         </button>
-
+        {showModal && (
+          <div className="modal">
+            <div className="modal-content">
+              <span className="close" onClick={handleCloseModal}>&times;</span>
+              <img src={currentPlayer.image} alt={currentPlayer.name} />
+              <p>{currentPlayer.name} a hit le monstre</p>
+            </div>
+          </div>
+        )}
       </div>
     );
 }

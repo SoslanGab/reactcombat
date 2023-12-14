@@ -48,7 +48,8 @@ export const fightSlice = createSlice({
     specialAction: (state, action) => {
       const player = state.players.find(p => p.id === action.payload);
       if (player) {
-        player.mana = Math.min(player.mana + Math.floor(Math.random() * 10), player.manaMax);
+        const healAmount = Math.floor(Math.random() * 10); // Ou tout autre logique pour la quantité de soin
+        player.pv = Math.min(player.pv + healAmount, player.pvMax); // Assurez-vous de ne pas dépasser les PV max
       }
       checkGameOver(state);
     },
@@ -80,13 +81,19 @@ export const fightSlice = createSlice({
       const playerId = action.payload; 
       const player = state.players.find(p => p.id === playerId);
       if (player) {
-        player.pv = Math.max(player.pv - 50, 0);
+        player.pv = Math.max(player.pv - 50, 0); // Réduit les points de vie du joueur
         if (player.pv === 0) {
-          player.isAlive = false;
+          player.isKO = true; // Met à jour l'état isKO
+          player.isAlive = false; // Cette ligne pourrait être redondante si vous utilisez isKO pour la même logique
         }
       }
-      checkGameOver(state);
+      // Affiche l'état des joueurs avant la vérification du game over pour le débogage
+      console.log("Avant checkGameOver", state.players.map(p => ({ id: p.id, isKO: p.isKO })));
+      checkGameOver(state); // Vérifie si le jeu doit passer à l'état game over
+      // Affiche l'état du game over après la vérification pour le débogage
+      console.log("Après checkGameOver", state.gameOver);
     },
+    
     nextTurn: (state) => {
       // Vérifie d'abord si tous les joueurs sont KO
       const allPlayersKO = state.players.every(player => player.isKO);
