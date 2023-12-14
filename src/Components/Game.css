@@ -615,6 +615,7 @@ overflow: visible;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  border-image: url('../../public/images/ring/ring-bas.png') 60;
 }
 
 .arena {
@@ -641,7 +642,7 @@ overflow: visible;
 }
 
 .player-card, .monster-card {
-  border: 2px solid #fff;
+  border: 2px solid #3f3737;
   padding: 15px;
   border-radius: 10px;
   margin: 10px;
@@ -697,4 +698,17 @@ overflow: visible;
   font-size: 1rem; /* Ajustez la taille du texte si nécessaire */
 }
 
-/* Ajoutez d'autres styles spécifiques ici */
+/* Styles pour le bouton Rejouer */
+.game-over-container h1 {
+  margin-bottom: 30px; /* Ajoute de l'espace en dessous du texte Game Over */
+}
+.replay-button {
+  background-color: green;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 50px; /* Augmentez cette valeur pour plus d'espace */
+  border: none;
+  border-radius: 5px;
+}

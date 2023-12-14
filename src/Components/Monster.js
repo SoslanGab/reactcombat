@@ -22,7 +22,7 @@ const Monster = () => {
                 </div>
               </div>
               {/* Utilisation des données dynamiques du monstre pour les props du ProgressBar */}
-              <ProgressBar pv={monster.pv} pvMax={monster.pvMax} bgType='bg-danger' faType='fa-heart' barName=' : pv' />
+              <ProgressBar barType='health' pv={monster.pv} pvMax={monster.pvMax} bgType='bg-danger' faType='fa-heart' barName=' : pv' />
             </div>
           </div>
         </div>

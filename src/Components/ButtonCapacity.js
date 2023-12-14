@@ -46,43 +46,49 @@ const ButtonCapacity = ({ player }) => {
     if (currentPlayer.isKO) {
       return <div>{currentPlayer.name} est KO</div>;
     }
+    
+    if (currentPlayer.id !== currentTurn) {
+      return <div>{currentPlayer.name} passe son tour</div>;
+    }
 
     return (
-      <div className="button-group">
-        <button 
-          type="button" 
-          onClick={combat} 
-          className="btn btn-success material-tooltip-main"
-          disabled={currentPlayer.id !== currentTurn || currentPlayer && (currentPlayer.pv <= 0 || currentPlayer.mana <= 0)}>
-          Hit
-          <i className="fas fa-bomb"></i> 5
-          <i className="fas fa-fire-alt"></i>
-        </button>
+      <div className="button-group row">
+          <button 
+            type="button" 
+            onClick={combat} 
+            className="btn btn-success material-tooltip-main"
+            disabled={currentPlayer.id !== currentTurn || currentPlayer && (currentPlayer.pv <= 0 || currentPlayer.mana <= 0)}>
+            Hit
+            <i className="fas fa-bomb"></i> 5
+            <i className="fas fa-fire-alt"></i>
+          </button>
+      
+        <br></br>
         <button 
           type="button" 
           onClick={handleSpecialAction} 
           className="btn btn-warning material-tooltip-main"
           disabled={currentPlayer.id !== currentTurn || currentPlayer && currentPlayer.pv <= 0}>
 
-          Coup Spécial
+          Heal
           <i className="fas fa-magic"></i>
         </button>
-
-      <button 
-        type="button" 
-        onClick={handleSpecialHit} 
-        className="btn btn-danger"
-        disabled={currentPlayer.id !== currentTurn || currentPlayer && (currentPlayer.pv <= 0 || currentPlayer.mana <= 0)}>
-        Special Hit
-      </button>
-
-      <button 
-        type="button" 
-        onClick={handlequit} 
-        className="btn btn-danger"
-        disabled={currentPlayer.id !== currentTurn}>
-        quit
-      </button>
+        <br></br>
+        <button 
+          type="button" 
+          onClick={handleSpecialHit} 
+          className="btn btn-success"
+          disabled={currentPlayer.id !== currentTurn || currentPlayer && (currentPlayer.pv <= 0 || currentPlayer.mana <= 0)}>
+          Special Hit
+        </button>
+        <br></br>
+        <button 
+          type="button" 
+          onClick={handlequit} 
+          className="btn btn-danger"
+          disabled={currentPlayer.id !== currentTurn}>
+          Quit
+        </button>
 
       </div>
     );

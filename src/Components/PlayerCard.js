@@ -13,7 +13,6 @@ function PlayerCard(props) {
     4: "https://media.giphy.com/media/ZWttz5OctEJ5tH0MIl/giphy.gif"  // Quatrième joueur
   };
 
-  // Sélection du GIF en fonction de l'ID du joueur
   const playerGif = playerGifs[props.player.id];
   if (!isPlayerAlive) {
     return (

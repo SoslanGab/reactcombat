@@ -42,6 +42,7 @@ export const fightSlice = createSlice({
           }
         }
       });
+      checkGameOver(state);
     },
 
     specialAction: (state, action) => {
@@ -49,6 +50,7 @@ export const fightSlice = createSlice({
       if (player) {
         player.mana = Math.min(player.mana + Math.floor(Math.random() * 10), player.manaMax);
       }
+      checkGameOver(state);
     },
 
     specialHit: (state, action) => {
@@ -72,6 +74,7 @@ export const fightSlice = createSlice({
           }
         }
       });
+      checkGameOver(state);
     },  
     hitBack: (state, action) => {
       const playerId = action.payload; 
@@ -82,18 +85,22 @@ export const fightSlice = createSlice({
           player.isAlive = false;
         }
       }
+      checkGameOver(state);
     },
     nextTurn: (state) => {
-      const alivePlayers = state.players.filter(p => p.isAlive);
-      if (alivePlayers.length === 1) {
+      // Vérifie d'abord si tous les joueurs sont KO
+      const allPlayersKO = state.players.every(player => player.isKO);
+      if (allPlayersKO) {
         state.gameOver = true;
-        state.winner = alivePlayers[0].name;
+        return; // Sort de la fonction pour éviter la boucle
       }
-
+    
+      // Si au moins un joueur n'est pas KO, continue avec la logique de passage au tour suivant
       do {
         state.currentTurn = (state.currentTurn % state.players.length) + 1;
-      } while (state.players.find(p => p.id === state.currentTurn).pv <= 0);
+      } while (state.players.find(p => p.id === state.currentTurn).isKO);
     },
+    
 
     quit: (state, action) => {
       const playerId = action.payload;
@@ -101,9 +108,21 @@ export const fightSlice = createSlice({
       if (player) {
         player.isKO = true;
       }
+      checkGameOver(state);
+    },
+    checkGameOver: (state) => {
+      const allPlayersKO = state.players.every(player => player.isKO);
+      if (allPlayersKO) {
+        state.gameOver = true;
+      }
+    },
+    resetGame: (state) => {
+      localStorage.removeItem('gameState'); 
+      return initialState;
     },
   }
+
 });
 
-export const { hitMonster, hitBack, specialAction,specialHit, nextTurn, quit  } = fightSlice.actions;
+export const { hitMonster, hitBack, specialAction,specialHit, nextTurn, quit, checkGameOver, resetGame  } = fightSlice.actions;
 export default fightSlice.reducer;
