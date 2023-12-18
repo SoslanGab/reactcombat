@@ -24,6 +24,19 @@ class Game extends React.Component {
       );
     }
 
+    if (this.props.victory) {
+      return (
+        <div className="game-container">
+          <div className="game-over-container">
+            <h1>Victoire !</h1>
+            <button onClick={this.handleResetGame} className="replay-button">
+              Rejouer
+            </button>
+          </div>
+        </div>
+      );
+    }
+
     return (
       <div className="game-container">
         <div className="arena">
@@ -37,7 +50,8 @@ class Game extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    gameOver: state.fight.gameOver
+    gameOver: state.fight.gameOver,
+    victory: state.fight.victory
   };
 }
 const mapDispatchToProps = {

@@ -15,6 +15,7 @@ const initialState = {
   gameOver: false,
   winner: null,
   currentTurn: 1,
+  victory: false,
 };
 
 export const fightSlice = createSlice({
@@ -41,6 +42,9 @@ export const fightSlice = createSlice({
           }
         }
       });
+      if (state.monster.pv === 0) {
+        state.victory = true;
+      };
       checkGameOver(state);
     },
 
@@ -61,6 +65,7 @@ export const fightSlice = createSlice({
         const manaCost = Math.floor(Math.random() * (20 - 8 + 1)) + 8;
         player.mana = Math.max(player.mana - manaCost, 0);
         state.monster.pv = Math.max(state.monster.pv - damage, 0); 
+        player.pv = Math.max(player.pv - 35, 0);
       }
       if (player.pv === 0) {
         player.isKO = true;
@@ -80,7 +85,7 @@ export const fightSlice = createSlice({
       const playerId = action.payload; 
       const player = state.players.find(p => p.id === playerId);
       if (player) {
-        player.pv = Math.max(player.pv - 50, 0); // Réduit les points de vie du joueur
+        player.pv = Math.max(player.pv - 15, 0); // Réduit les points de vie du joueur
         if (player.pv === 0) {
           player.isKO = true; // Met à jour l'état isKO
           player.isAlive = false; // Cette ligne pourrait être redondante si vous utilisez isKO pour la même logique
@@ -123,8 +128,8 @@ export const fightSlice = createSlice({
       }
     },
     resetGame: (state) => {
-      localStorage.removeItem('gameState'); 
-      return initialState;
+      localStorage.removeItem('gameState');
+      Object.assign(state, initialState);
     },
   }
 

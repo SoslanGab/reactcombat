@@ -818,3 +818,66 @@ overflow: visible;
 .btn-custom.disabled:hover {
   background-color: #cccccc; /* Gardez la même couleur au survol */
 }
+
+
+
+
+
+
+
+
+
+
+/* Animation d'attaque */
+
+.attack-animation {
+  animation: shake 0.5s;
+  animation-iteration-count: 1;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+
+/* Animation de soin */
+.heal-animation {
+  animation: heal 1s;
+  animation-iteration-count: 1;
+  border-radius: 50%;
+  box-shadow: 0 0 15px green;
+}
+
+@keyframes heal {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Animations pour la victoire */
+.victory-animation {
+  animation: victory 2s;
+  animation-iteration-count: 1;
+  background: radial-gradient(circle, rgba(255,255,0,1) 0%, rgba(0,212,255,1) 100%);
+}
+
+@keyframes victory {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+
+
+/* Animations pour la defaite */
+.game-over-animation {
+  animation: fadeOut 2s;
+  animation-iteration-count: 1;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+@keyframes fadeOut {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
